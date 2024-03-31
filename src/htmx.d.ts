@@ -21,7 +21,7 @@ export function addClass(elt: Element, clazz: string, delay?: number): void;
  * @param element the element to target (defaults to the **body**)
  * @returns Promise that resolves immediately if no request is sent, or when the request is complete
  */
-export function ajax(verb: string, path: string, element?: Element): Promise<void>;
+export function ajax(verb: HttpMethods, path: string, element?: Element): Promise<void>;
 
 /**
  * Issues an htmx-style AJAX request
@@ -33,7 +33,7 @@ export function ajax(verb: string, path: string, element?: Element): Promise<voi
  * @param selector a selector for the target
  * @returns Promise that resolves immediately if no request is sent, or when the request is complete
  */
-export function ajax(verb: string, path: string, selector: string): Promise<void>;
+export function ajax(verb: HttpMethods, path: string, selector: string): Promise<void>;
 
 /**
  * Issues an htmx-style AJAX request
@@ -46,7 +46,7 @@ export function ajax(verb: string, path: string, selector: string): Promise<void
  * @returns Promise that resolves immediately if no request is sent, or when the request is complete
  */
 export function ajax(
-    verb: string,
+    verb: HttpMethods,
     path: string,
     context: Partial<{ source: any; event: any; handler: any; target: any; swap: any; values: any; headers: any; select: any }>
 ): Promise<void>;
@@ -431,6 +431,8 @@ export interface HtmxConfig {
      */
     ignoreTitle?: boolean;
 }
+
+export type HttpMethods = 'get' | 'post' | 'put' | 'delete' | 'put' | 'patch';
 
 export type HtmxEvent = "htmx:abort"
     | "htmx:afterOnLoad"
